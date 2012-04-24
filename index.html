@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title></title> <!-- CHANGE THE TITLE! -->
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width">
+  <link href='http://fonts.googleapis.com/css?family=Salsa' rel='stylesheet' type='text/css'> <!-- this is for the font 'Salsa' -->
+  <link rel="stylesheet" href="css/style.css">
+  <style type="text/css">
+    body {
+      font-family: salsa, sans-serif;
+       color: #33B45B;
+       background: url(img/fluffy.png) repeat;
+    }
+    .wrapper {
+      width: 1000px;
+      margin: 0 auto;
+      position: relative;
+    }
+    #video, #youtube object, .column {
+      width: 480px;
+    }
+
+    .column{
+      float: left;
+      margin-right: 10px;
+      z-index: 4000;
+    }
+    .column:last-child {
+      margin-right: 0;
+    }
+
+    h1 {
+      font-size: 3em;
+      text-align: center;
+    }
+
+    #video, #youtube object {
+      box-shadow: 0 10px 8px rgba(0,0,0,.6);
+      margin-bottom: 10px;
+      border: 1px solid #33B45B;
+    }
+    
+    #bg-image {
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    #bg-image img {
+      width: 100%;
+    }
+
+    #webpage {
+      height: 1000px;
+    } 
+
+    #right-column {
+      color: #000;
+      background: rgba(255,255,255,.8);
+      padding: 10px;
+      min-height: 600px;
+      box-shadow: 3px 3px 8px rgba(0,0,0,.2);
+    }
+
+
+  
+  </style>
+</head>
+<body>
+
+<div id="bg-image"></div>
+<div class="wrapper">
+  <header>
+    <h1>My Popcorn Fun</h1>
+  </header>
+  <div id="main" role="main">
+    <div id="left-column" class="column">
+      <!-- This is if you have your own HTML5 video -->
+      <video id="video" controls> 
+        <source src="http://videos.mozilla.org/serv/webmademovies/popcornplug.mp4">
+        <source src="http://videos.mozilla.org/serv/webmademovies/popcornplug.ogv">
+        <source src="http://videos.mozilla.org/serv/webmademovies/popcornplug.webm">
+      </video>
+      <!-- This is if you want to use YouTube -->
+      <div id="youtube"></div>
+        <div id="footnotes"></div>
+    </div><!-- .column -->
+
+    <div id="right-column" class="column">
+      <div id="sidebar">
+        <div id="info">
+          <p>Popcorn.js is an HTML5 media framework written in JavaScript for filmmakers, web developers, and anyone who wants to create time-based interactive media on the web. Popcorn.js is part of Mozilla's Popcorn project.</p>
+        </div>
+      </div>
+    </div><!-- .column -->
+  </div>
+  <footer>
+
+  </footer>
+</div>
+  <script src="http://popcornjs.org/code/dist/popcorn-complete.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script>
+    //Let's hide the video 
+
+    // Make some popcorn! ------------------------------------------------------
+      var p = Popcorn( "#video" );
+    // Make it play, and set the volume to 0.
+      p.play().volume(0);
+    //Add a footnote...
+      p.footnote({
+        start: 3,
+        end: 5,
+        text: "Hello world",
+        target: "footnotes"
+      }); 
+
+    //Make some YouTube popcorn! ------------------------------------------------
+    var y = Popcorn.youtube( "#youtube", "http://www.youtube.com/watch?v=Uk8x3V-sUgU&feature=fvst" );
+    y.currentTime(10).play();
+
+    //Add a footnote
+    y.footnote({
+        start: 14,
+        end: 20,
+        text: "The internet ROCKS! Or does it...",
+        target: "sidebar"
+    });
+
+     y.image({
+        start: 11,
+        end: 15,
+        src: "img/facebook-egypt.jpg",
+        target: "bg-image",
+        url: "http://www.flickr.com/photos/humanrights/5416896608/"
+    });
+
+      y.webpage({
+        id: "webpage",
+        start: 14,
+        end: 20,
+        src: "http://en.wikipedia.org/wiki/The_Californian_Ideology",
+        target: "bg-image"
+      });
+
+
+  </script>
+  <!-- end scripts -->
+</body>
+</html>
